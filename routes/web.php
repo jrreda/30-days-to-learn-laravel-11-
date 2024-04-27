@@ -9,7 +9,10 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
-    $jobs = Job::with('employer')->get();
+    // $jobs = Job::with('employer')->get(); // eager loading
+    $jobs = Job::with('employer')->paginate(10);
+    // $jobs = Job::with('employer')->simplePaginate(10); // previous || next (pages in url)
+    // $jobs = Job::with('employer')->cursorPaginate(10); // best performance for large datasets
 
     return view('jobs', [
         'jobs' => $jobs
