@@ -11,7 +11,7 @@ class Job extends EloquentModel
     
     public $table = 'job_listings';
     
-    public $fillable = ['title', 'salary'];
+    public $fillable = ['title', 'salary', 'employer_id'];
 
     public function employer() {
         return $this->belongsTo(Employer::class);
