@@ -3,10 +3,20 @@
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Mail\JobPosted;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
+
+Route::get('/test', function() {
+    Mail::to('jeffrey@laracas.com')->send(
+        new JobPosted()
+    );
+
+    return 'Mail test successful';
+});
 
 // Route::resource('jobs', JobController::class)->only(['index', 'show']);
 // Route::resource('jobs', JobController::class)->except(['index', 'show'])->middleware('auth');
